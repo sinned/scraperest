@@ -38,7 +38,7 @@
 							'" . $db->escape($this->pinboard_name) . "'
 							)";
 			if ($db->query($sql)) {
-				echo "INSERTED PIN " . $this->data_id . "\n";
+				echo " INSERTED PIN " . $this->data_id . "\n";
 			} else {
 				// insert most likely failed because we have it already...
 				//echo "FAILED PIN " . $this->data_id . "\n";
