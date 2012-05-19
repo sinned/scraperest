@@ -18,6 +18,8 @@
 
 		for ($page = 1; $page <=10; $page++) {
 			
+			$new_pins_on_this_page = false;
+			
 			// add page number
 			if (strpos($url, "?")) {
 				$pagedurl = $url . "&lazy=1&page=" . $page;
@@ -84,9 +86,16 @@
 				//echo $xpath->query("//p[@class='stats colorless']//span[@class='CommentsCount']")->item(0)->nodeValue;		
 							
 				//$pin->_print();		
-				$pin->_save();
-				//echo get_inner_html($div);
+				if ($pin->_save()) {
+					$new_pins_on_this_page = true;
+				} 
 			} // end-foreach:divs
+			
+			// stop the loop if there's no more pins.
+			if (!$new_pins_on_this_page) {
+				$page = 11;
+			}
+			
 		} // end-for: pages
 	} // end-foreach:urls
 	

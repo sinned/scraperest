@@ -50,10 +50,12 @@
 							)";
 			if ($db->query($sql)) {
 				echo " INSERTED PIN " . $this->data_id . "\n";
+				return true;
 			} else {
 				// insert most likely failed because we have it already...
 				//echo "FAILED PIN " . $this->data_id . "\n";
 				//echo $sql;
+				return false;
 			}
 			
 		}
