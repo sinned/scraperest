@@ -5,11 +5,14 @@
  *
  */
 
+
 	error_reporting(E_ERROR);
 	
 	require "scraperest-config.php";
 	require "lib/ez_sql.php";
 	require "lib/pins.lib.php";
+
+	echo "\n---- BEGIN PINTEREST SCRAPE " . date("F j, Y, g:i a") . " ---\n";
 
 	$urls = $db->get_col("SELECT url FROM pinterest_urls");
 	//$urls = array ('http://localhost/scraperest/pin-test-cars.html');
@@ -104,5 +107,7 @@
 			
 		} // end-for: pages
 	} // end-foreach:urls
+
+	echo "\n---- END PINTEREST SCRAPE " . date("F j, Y, g:i a") . " ---\n";
 	
 ?>
