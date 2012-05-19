@@ -10,7 +10,7 @@
 
 	$urls = $db->get_col("SELECT url FROM pinterest_urls");
 	//$urls = array ('http://localhost/scraperest/pin-test-cars.html');
-	$urls = array ('http://pinterest.com/popular/');
+	//$urls = array ('http://pinterest.com/popular/');
 	
 	foreach ($urls as $url) {
 		echo "Scraping $url \n";
