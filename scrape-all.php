@@ -4,6 +4,9 @@
  * @author Dennis Yang <sinned@gmail.com> 
  *
  */
+
+	error_reporting(E_ERROR);
+	
 	require "scraperest-config.php";
 	require "lib/ez_sql.php";
 	require "lib/pins.lib.php";
@@ -14,7 +17,8 @@
 	//$urls = array ('http://pinterest.com/all/?category=art&lazy=1&page=3');
 	
 	foreach ($urls as $url) {
-		echo "Scraping $url \n";
+		//echo "Scraping $url \n";
+		echo "\n";
 
 		for ($page = 1; $page <=10; $page++) {
 			
@@ -44,6 +48,8 @@
 			$xp = new DOMXpath($dom);
 			//$divs = $xp->query('//*[contains(@class, \'pin\')]'); // too aggressive 
 			$divs = $xp->query("//*[@class='pin']"); // grabs each div with class 'pin' and tucks it into a node
+		
+			echo " FOUND " . ($divs->length) . " PINS!! \n";
 		
 			foreach ($divs as $div) {
 				$pin = new PinterestPin();
