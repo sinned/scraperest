@@ -17,6 +17,8 @@
 		var $pinboard_url = "";
 		var $pinboard_name = "";
 		
+		var $from_url = ""; // the url from which this pin was scraped
+		
 		function _print() {
 			echo "PIN: " . $this->data_id . " " . $this->description . "\n\n";
 		}
@@ -31,7 +33,7 @@
 			global $db; // grab the ez_sql db connection
 		
 			
-			$sql = "REPLACE INTO pins (data_id, url, description, user_url, user_img_src, user_fullname, pinboard_url, pinboard_name, likes_count, comments_count, repins_count)
+			$sql = "REPLACE INTO pins (data_id, url, description, user_url, user_img_src, user_fullname, pinboard_url, pinboard_name, likes_count, comments_count, repins_count, from_url)
 					VALUES ('" . $db->escape($this->data_id) . "', 
 							'" . $db->escape($this->url) . "',
 							'" . $db->escape($this->description) . "',
@@ -42,7 +44,8 @@
 							'" . $db->escape($this->pinboard_name) . "',
 							'" . $db->escape($this->likes_count) . "',
 							'" . $db->escape($this->comments_count) . "',
-							'" . $db->escape($this->repins_count) . "'
+							'" . $db->escape($this->repins_count) . "',
+							'" . $db->escape($this->from_url) . "'
 							)";
 			if ($db->query($sql)) {
 				echo " INSERTED PIN " . $this->data_id . "\n";

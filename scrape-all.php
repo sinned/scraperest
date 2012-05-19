@@ -38,6 +38,7 @@
 		
 		foreach ($divs as $div) {
 			$pin = new PinterestPin();
+			$pin->from_url = $url;
 			$pin->data_id = $div->getAttribute('data-id');
 
 			// from here, we run another xPath query for each of the attributes of the pin
