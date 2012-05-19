@@ -10,6 +10,10 @@
 		var $user_img_src = "";
 		var $user_fullname = "";
 		
+		var $likes_count = 0;
+		var $comments_count = 0;
+		var $repins_count = 0;
+		
 		var $pinboard_url = "";
 		var $pinboard_name = "";
 		
@@ -27,7 +31,7 @@
 			global $db; // grab the ez_sql db connection
 		
 			
-			$sql = "INSERT INTO pins (data_id, url, description, user_url, user_img_src, user_fullname, pinboard_url, pinboard_name)
+			$sql = "REPLACE INTO pins (data_id, url, description, user_url, user_img_src, user_fullname, pinboard_url, pinboard_name, likes_count, comments_count, repins_count)
 					VALUES ('" . $db->escape($this->data_id) . "', 
 							'" . $db->escape($this->url) . "',
 							'" . $db->escape($this->description) . "',
@@ -35,7 +39,10 @@
 							'" . $db->escape($this->user_img_src) . "',
 							'" . $db->escape($this->user_fullname) . "',
 							'" . $db->escape($this->pinboard_url) . "',
-							'" . $db->escape($this->pinboard_name) . "'
+							'" . $db->escape($this->pinboard_name) . "',
+							'" . $db->escape($this->likes_count) . "',
+							'" . $db->escape($this->comments_count) . "',
+							'" . $db->escape($this->repins_count) . "'
 							)";
 			if ($db->query($sql)) {
 				echo " INSERTED PIN " . $this->data_id . "\n";

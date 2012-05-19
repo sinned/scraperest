@@ -9,6 +9,7 @@
 	require "lib/pins.lib.php";
 
 	$urls = $db->get_col("SELECT url FROM pinterest_urls");
+	//$urls = array ('http://localhost/scraperest/pin-test-cars.html');
 	
 	foreach ($urls as $url) {
 		echo "Scraping $url \n";
@@ -54,6 +55,25 @@
 		
 			$pin->pinboard_name = $xpath->query("//div[@class='convo attribution clearfix']//a")->item(2)->nodeValue;
 			$pin->pinboard_url = $xpath->query("//div[@class='convo attribution clearfix']//a")->item(2)->getAttribute('href');		
+
+			if (isset($xpath->query("//p[@class='stats colorless']//span[@class='LikesCount']")->item(0)->nodeValue)) { 
+				$likesstring = trim($xpath->query("//p[@class='stats colorless']//span[@class='LikesCount']")->item(0)->nodeValue);
+				$pin->likes_count = substr($likesstring, 0, strrpos($likesstring," like")) . "\n";
+			}	
+
+			if (isset($xpath->query("//p[@class='stats colorless']//span[@class='RepinsCount']")->item(0)->nodeValue)) { 
+				$repinsstring = trim($xpath->query("//p[@class='stats colorless']//span[@class='RepinsCount']")->item(0)->nodeValue);
+				$pin->repin_count = substr($repinsstring, 0, strrpos($repinsstring," repin")) . "\n";
+				//echo $repinsstring . " " . $pin->repin_count . "\n";
+			}
+			
+			if (isset($xpath->query("//p[@class='stats colorless']//span[@class='CommentsCount']")->item(0)->nodeValue)) { 
+				$commentsstring = trim($xpath->query("//p[@class='stats colorless']//span[@class='CommentsCount']")->item(0)->nodeValue);
+				$pin->comment_count = substr($commentsstring, 0, strrpos($commentsstring," comment")) . "\n";
+				//echo $commentsstring . " " . $pin->comment_count . "\n";				
+			}							
+			//echo $xpath->query("//p[@class='stats colorless']//span[@class='RepinsCount']")->item(0)->nodeValue;		
+			//echo $xpath->query("//p[@class='stats colorless']//span[@class='CommentsCount']")->item(0)->nodeValue;		
 							
 			//$pin->_print();		
 			$pin->_save();
