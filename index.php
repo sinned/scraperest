@@ -6,6 +6,10 @@
 	// get the pins
 	$sql = "SELECT id, data_id, url, img_src, description, user_url, user_img_src, user_fullname, pinboard_url, pinboard_name, likes_count, comments_count, repins_count, from_url FROM pins ORDER BY id DESC LIMIT 500";
 	$pins = $db->get_results($sql);
+	
+	// get total pincount
+	$sql = "SELECT count(*) FROM pins";
+	$pincount = $db->get_var($sql);
 
 ?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
@@ -17,7 +21,7 @@
 
 <body>
 	<div>
-	<h1>Scraperest</h1>
+	<h1>Scraperest (<?php echo number_format($pincount); ?>)</h1>
 <?php
 	foreach ($pins as $pin) {
 		echo "<a href='http://www.pinterest.com" . $pin->url . "' title='" . substr($pin->description,0,50) . "' ><img height='100' src='" . $pin->img_src . "' alt ='" . substr($pin->description,0,50) . "' /></a> ";
