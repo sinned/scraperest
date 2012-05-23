@@ -4,7 +4,7 @@
 	require "lib/pins.lib.php";
 	
 	// get the pins
-	$sql = "SELECT id, data_id, url, img_src, description, user_url, user_img_src, user_fullname, pinboard_url, pinboard_name, likes_count, comments_count, repins_count, from_url FROM pins ORDER BY id DESC LIMIT 500";
+	$sql = "SELECT id, data_id, url, img_src, description, user_url, user_img_src, user_fullname, pinboard_url, pinboard_name, likes_count, comments_count, repins_count, from_url, last_updated FROM pins ORDER BY id DESC LIMIT 500";
 	$pins = $db->get_results($sql);
 	
 	// get total pincount
@@ -24,7 +24,7 @@
 	<h1>Scraperest (<?php echo number_format($pincount); ?>)</h1>
 <?php
 	foreach ($pins as $pin) {
-		echo "<a href='http://www.pinterest.com" . $pin->url . "' title='" . substr($pin->description,0,50) . "' ><img height='100' src='" . $pin->img_src . "' alt ='" . substr($pin->description,0,50) . "' /></a> ";
+		echo "<a href='http://www.pinterest.com" . $pin->url . "' title='" . substr($pin->description,0,50) . " " . $pin->last_updated . "' ><img height='100' src='" . $pin->img_src . "' alt ='" . substr($pin->description,0,50) . "' /></a> ";
 		//echo substr($pin->description,0,50) . " by <a href='http://pinterest.com" . $pin->user_url . "'>" . $pin->user_fullname . "</a> onto <a href='http://www.pinterest.com" . $pin->pinboard_url . "'>" . $pin->pinboard_name . "</a>.\n";
 	}
 ?>	
