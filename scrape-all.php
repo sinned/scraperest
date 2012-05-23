@@ -15,7 +15,7 @@
 	echo "\n---- BEGIN PINTEREST SCRAPE " . date("F j, Y, g:i a") . " ---\n";
 
 	$urls = $db->get_col("SELECT url FROM pinterest_urls");
-	$urls = array ('http://localhost/scraperest/pin-test-cars.html');
+	//$urls = array ('http://localhost/scraperest/pin-test-cars.html');
 	//$urls = array ('http://pinterest.com/popular/');
 	//$urls = array ('http://pinterest.com/all/?category=art&lazy=1&page=3');
 	
