@@ -20,7 +20,10 @@
 		var $from_url = ""; // the url from which this pin was scraped
 		
 		function _print() {
-			echo "PIN: " . $this->data_id . " " . $this->description . "\n\n";
+			echo "PIN: " . $this->data_id . " " . $this->description . 
+					" l:" . $this->likes_count . 
+					" r:" . $this->repins_count . 
+					" c:" . $this->comments_count . "\n\n";
 		}
 
 

@@ -15,7 +15,7 @@
 	echo "\n---- BEGIN PINTEREST SCRAPE " . date("F j, Y, g:i a") . " ---\n";
 
 	$urls = $db->get_col("SELECT url FROM pinterest_urls");
-	//$urls = array ('http://localhost/scraperest/pin-test-cars.html');
+	$urls = array ('http://localhost/scraperest/pin-test-cars.html');
 	//$urls = array ('http://pinterest.com/popular/');
 	//$urls = array ('http://pinterest.com/all/?category=art&lazy=1&page=3');
 	
@@ -77,18 +77,18 @@
 
 				if (isset($xpath->query("//p[@class='stats colorless']//span[@class='LikesCount']")->item(0)->nodeValue)) { 
 					$likesstring = trim($xpath->query("//p[@class='stats colorless']//span[@class='LikesCount']")->item(0)->nodeValue);
-					$pin->likes_count = substr($likesstring, 0, strrpos($likesstring," like")) . "\n";
+					$pin->likes_count = substr($likesstring, 0, strrpos($likesstring," like"));
 				}	
 
 				if (isset($xpath->query("//p[@class='stats colorless']//span[@class='RepinsCount']")->item(0)->nodeValue)) { 
 					$repinsstring = trim($xpath->query("//p[@class='stats colorless']//span[@class='RepinsCount']")->item(0)->nodeValue);
-					$pin->repin_count = substr($repinsstring, 0, strrpos($repinsstring," repin")) . "\n";
+					$pin->repins_count = substr($repinsstring, 0, strrpos($repinsstring," repin"));
 					//echo $repinsstring . " " . $pin->repin_count . "\n";
 				}
 			
 				if (isset($xpath->query("//p[@class='stats colorless']//span[@class='CommentsCount']")->item(0)->nodeValue)) { 
 					$commentsstring = trim($xpath->query("//p[@class='stats colorless']//span[@class='CommentsCount']")->item(0)->nodeValue);
-					$pin->comment_count = substr($commentsstring, 0, strrpos($commentsstring," comment")) . "\n";
+					$pin->comments_count = substr($commentsstring, 0, strrpos($commentsstring," comment"));
 					//echo $commentsstring . " " . $pin->comment_count . "\n";				
 				}							
 				//echo $xpath->query("//p[@class='stats colorless']//span[@class='RepinsCount']")->item(0)->nodeValue;		
