@@ -8,12 +8,12 @@
 	require "lib/ez_sql.php";
 	require "lib/pins.lib.php";
 
-	$url = "http://www.pinterest.com/";
+	$url = "http://pinterest.com/";
 	//$url = "http://localhost/scraperest/pin-test.html";
 	//$url = "http://localhost/scraperest/dom-test.html";
 	
 	$html = loadContentFromUrl($url);
-	//echo $html . "\n\n";
+	echo $html . "\n\n";
 	
 	// find all of the urls of the form /all?category=SOMETHING
 	

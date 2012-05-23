@@ -75,14 +75,21 @@
 	    curl_setopt($ch, CURLOPT_URL, $url);
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // get the response as a string from curl_exec(), rather than echoing it
 	    curl_setopt($ch, CURLOPT_HEADER, 0);
+	
+		//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_VERBOSE, false);
+		$agent= 'curl 7.19.7 (universal-apple-darwin10.0) libcurl/7.19.7 OpenSSL/0.9.8r zlib/1.2.3';
+		curl_setopt($ch, CURLOPT_USERAGENT, $agent);
 
 	    if ($htuser && $htpasswd) {
-		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC); 
-		curl_setopt($ch, CURLOPT_USERPWD, $htuser . ":" . $htpasswd);	
+			curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC); 
+			curl_setopt($ch, CURLOPT_USERPWD, $htuser . ":" . $htpasswd);	
 	    }
 
-	    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // turn on redirect to follow any Location in header
+	    //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // turn on redirect to follow any Location in header
+	
 	    // grab URL and set it to $content
+	
 	    $content = curl_exec($ch);
 	    // close cURL resource, and free up system resources
 	    curl_close($ch);
