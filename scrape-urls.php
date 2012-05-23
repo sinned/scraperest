@@ -20,7 +20,7 @@
 	$pattern = '/<a href="(\/all\/.*?)"/';
 	if (preg_match_all($pattern, $html, $matches)) {
 		foreach ($matches[1] as $url) {
-			$sql = "INSERT INTO pinterest_urls (url) VALUES ('http://www.pinterest.com" . $db->escape($url) . "')";
+			$sql = "INSERT INTO pinterest_urls (url) VALUES ('http://pinterest.com" . $db->escape($url) . "')";
 			if ($db->query($sql)) {
 				echo "INSERTED! " . $url . "\n";				
 			}

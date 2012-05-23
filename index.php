@@ -24,7 +24,7 @@
 	<h1>Scraperest (<?php echo number_format($pincount); ?>)</h1>
 <?php
 	foreach ($pins as $pin) {
-		echo "<a href='http://www.pinterest.com" . $pin->url . "' title='" . substr($pin->description,0,50) . " " . $pin->last_updated . "' ><img height='100' src='" . $pin->img_src . "' alt ='" . substr($pin->description,0,50) . "' /></a> ";
+		echo "<a href='http://pinterest.com" . $pin->url . "' title='" . substr($pin->description,0,50) . " " . $pin->last_updated . "' ><img height='100' src='" . $pin->img_src . "' alt ='" . substr($pin->description,0,50) . "' /></a> ";
 		//echo substr($pin->description,0,50) . " by <a href='http://pinterest.com" . $pin->user_url . "'>" . $pin->user_fullname . "</a> onto <a href='http://www.pinterest.com" . $pin->pinboard_url . "'>" . $pin->pinboard_name . "</a>.\n";
 	}
 ?>	

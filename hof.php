@@ -27,7 +27,7 @@
 <?php
 	foreach ($pins as $pin) {
 		echo "<tr>";
-		echo "<td><a href='http://www.pinterest.com" . $pin->url . "' title='" . substr($pin->description,0,50) . " " . $pin->last_updated . "' ><img height='100' src='" . $pin->img_src . "' alt ='" . substr($pin->description,0,50) . "' /></a></td>";
+		echo "<td><a href='http://pinterest.com" . $pin->url . "' title='" . substr($pin->description,0,50) . " " . $pin->last_updated . "' ><img height='100' src='" . $pin->img_src . "' alt ='" . substr($pin->description,0,50) . "' /></a></td>";
 		echo "<td>" . substr($pin->description,0,50) . " by <a href='http://pinterest.com" . $pin->user_url . "'>" . $pin->user_fullname . "</a> onto <a href='http://www.pinterest.com" . $pin->pinboard_url . "'>" . $pin->pinboard_name . "</a>.</td>\n";
 		echo "<td>" . $pin->repins_count . "</td>";
 		echo "<td>" . $pin->likes_count . "</td>";
