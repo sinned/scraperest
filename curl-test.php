@@ -1,7 +1,7 @@
 <?php
 /**
  * Scrapin' Pinterest
- * @author Dennis Yang <sinned@gmail.com> 
+ * @author Dennis Yang <http://www.github.com/sinned> 
  *
  */
 

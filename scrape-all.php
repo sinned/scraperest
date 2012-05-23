@@ -1,7 +1,7 @@
 <?php
 /**
  * Scrapin' Pinterest
- * @author Dennis Yang <sinned@gmail.com> 
+ * @author Dennis Yang <http://www.github.com/sinned> 
  *
  */
 
@@ -109,7 +109,7 @@
 				//echo $xpath->query("//p[@class='stats colorless']//span[@class='RepinsCount']")->item(0)->nodeValue;		
 				//echo $xpath->query("//p[@class='stats colorless']//span[@class='CommentsCount']")->item(0)->nodeValue;		
 							
-				//$pin->_print();		
+				$pin->_print();		
 				if ($pin->_save()) {
 					$new_pins_on_this_page = true;
 				} 
