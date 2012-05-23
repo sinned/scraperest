@@ -18,6 +18,7 @@
 	//$urls = array ('http://localhost/scraperest/pin-test-cars.html');
 	//$urls = array ('http://pinterest.com/popular/');
 	//$urls = array ('http://pinterest.com/all/?category=art&lazy=1&page=3');
+	//$urls = array ('http://localhost/scraperest/pin-test-gifts.html');	
 	
 	foreach ($urls as $url) {
 		//echo "Scraping $url \n";
@@ -78,6 +79,17 @@
 				if (isset($xpath->query("//p[@class='stats colorless']//span[@class='LikesCount']")->item(0)->nodeValue)) { 
 					$likesstring = trim($xpath->query("//p[@class='stats colorless']//span[@class='LikesCount']")->item(0)->nodeValue);
 					$pin->likes_count = substr($likesstring, 0, strrpos($likesstring," like"));
+				}	
+
+				if (isset($xpath->query("//strong[@class='price']")->item(0)->nodeValue)) { 
+					$pricestring = trim($xpath->query("//strong[@class='price']")->item(0)->nodeValue);
+					//echo "MATCHING: $pricestring YAY";
+					preg_match('/(.)([0-9]*\.[0-9]*)/u', $pricestring, $matches);
+					//print_r($matches);
+					//echo "YAH:" . $matches[2] . "MOO";
+					$pin->price = $matches[2];
+					$pin->currency = $matches[1];
+					//echo $pin->currency . $pin->price;
 				}	
 
 				if (isset($xpath->query("//p[@class='stats colorless']//span[@class='RepinsCount']")->item(0)->nodeValue)) { 

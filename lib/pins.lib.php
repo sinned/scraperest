@@ -6,6 +6,9 @@
 		var $url = "";
 		var $img_src = "";
 		var $description = "";
+		var $currency = "";		
+		var $price = 0;
+		
 		var $user_url = "";
 		var $user_img_src = "";
 		var $user_fullname = "";
@@ -23,7 +26,11 @@
 			echo "PIN: " . $this->data_id . " " . $this->description . 
 					" l:" . $this->likes_count . 
 					" r:" . $this->repins_count . 
-					" c:" . $this->comments_count . "\n\n";
+					" c:" . $this->comments_count;
+			if ($this->price > 0) {
+				echo " " . $this->currency . $this->price;
+			}
+			echo "\n";
 		}
 
 
@@ -36,11 +43,13 @@
 			global $db; // grab the ez_sql db connection
 		
 			
-			$sql = "INSERT INTO pins (data_id, url, img_src, description, user_url, user_img_src, user_fullname, pinboard_url, pinboard_name, likes_count, comments_count, repins_count, from_url)
+			$sql = "INSERT INTO pins (data_id, url, img_src, description, currency, price, user_url, user_img_src, user_fullname, pinboard_url, pinboard_name, likes_count, comments_count, repins_count, from_url)
 					VALUES ('" . $db->escape($this->data_id) . "', 
 							'" . $db->escape($this->url) . "',
 							'" . $db->escape($this->img_src) . "',							
 							'" . $db->escape($this->description) . "',
+							'" . $db->escape($this->currency) . "',														
+							'" . $db->escape($this->price) . "',							
 							'" . $db->escape($this->user_url) . "',
 							'" . $db->escape($this->user_img_src) . "',
 							'" . $db->escape($this->user_fullname) . "',
@@ -52,7 +61,8 @@
 							'" . $db->escape($this->from_url) . "'
 							)";
 			if ($db->query($sql)) {
-				echo " INSERTED PIN " . $this->data_id . "\n";
+				echo " INSERTED ";
+				$this->_print();			
 				return true;
 			} else {
 				// insert most likely failed because we have it already...
