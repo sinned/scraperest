@@ -23,7 +23,7 @@
 		var $from_url = ""; // the url from which this pin was scraped
 		
 		function _print() {
-			echo "PIN: " . $this->data_id . " " . $this->description . 
+			echo "PIN: " . $this->data_id . " " . substr($this->description, 0, 25) . 
 					" l:" . $this->likes_count . 
 					" r:" . $this->repins_count . 
 					" c:" . $this->comments_count;
@@ -43,7 +43,7 @@
 			global $db; // grab the ez_sql db connection
 		
 			
-			$sql = "INSERT INTO pins (data_id, url, img_src, description, currency, price, user_url, user_img_src, user_fullname, pinboard_url, pinboard_name, likes_count, comments_count, repins_count, from_url)
+			$sql = "REPLACE INTO pins (data_id, url, img_src, description, currency, price, user_url, user_img_src, user_fullname, pinboard_url, pinboard_name, likes_count, comments_count, repins_count, from_url)
 					VALUES ('" . $db->escape($this->data_id) . "', 
 							'" . $db->escape($this->url) . "',
 							'" . $db->escape($this->img_src) . "',							
