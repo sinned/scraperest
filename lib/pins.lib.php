@@ -86,7 +86,7 @@
 			curl_setopt($ch, CURLOPT_USERPWD, $htuser . ":" . $htpasswd);	
 	    }
 
-	    //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // turn on redirect to follow any Location in header
+	    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // turn on redirect to follow any Location in header
 	
 	    // grab URL and set it to $content
 	
