@@ -4,7 +4,7 @@
 	require "lib/pins.lib.php";
 	
 	// get the pins
-	$sql = "SELECT id, data_id, url, img_src, description, user_url, user_img_src, user_fullname, pinboard_url, pinboard_name, likes_count, comments_count, repins_count, from_url, last_updated FROM pins ORDER BY repins_count DESC LIMIT 500";
+	$sql = "SELECT data_id, url, img_src, description, user_url, user_img_src, user_fullname, pinboard_url, pinboard_name, likes_count, comments_count, repins_count, from_url, last_updated FROM pins ORDER BY repins_count DESC LIMIT 500";
 	$pins = $db->get_results($sql);
 	
 	// get total pincount
